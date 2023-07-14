@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  pgdb:
+    container_name: pgdb
+    restart: always
+    image: postgres:latest
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    expose:
+      - ${POSTGRES_PORT}
+  redis:
+    container_name: redis
+    restart: always
+    image: redis:latest
+    expose:
+      - ${REDIS_PORT}
+    volumes:
+      - ./redis_data:/data
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}

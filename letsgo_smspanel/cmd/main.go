@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
 	"log"
 	"os"
-
-	"github.com/joho/godotenv"
 
 	controllers "github.com/cyneptic/letsgo-smspanel/controller"
 	"github.com/cyneptic/letsgo-smspanel/controller/middleware"
@@ -22,7 +21,7 @@ func main() {
 	controllers.AddTemplateRoutes(e)
 	controllers.AddWalletHRoutes(e)
 	controllers.RegisterNumberHandler(e)
-	controllers.AddAdminActionRoutes(e)
+  controllers.AddAdminActionRoutes(e)
 	appPort := fmt.Sprintf(":%s", os.Getenv("PORT"))
 	if err := e.Start(appPort); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
